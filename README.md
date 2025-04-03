@@ -30,11 +30,14 @@ Go to the directory storing the git repository, and run:
 ```PowerShell
 
 npm start
+
+```
 or
+
+```
 npm start dev
 
 ```
-
 And it will open your browser and display the application. 
 
 ---
