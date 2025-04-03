@@ -198,4 +198,5 @@
   
   .cursor-pointer:hover {
     cursor: pointer;
+    color: #2196f3;
   }
