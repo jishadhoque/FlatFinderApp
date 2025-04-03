@@ -3,7 +3,7 @@
 
 Run: 
 ```
-npm i
+npm install
 ```
 
 
