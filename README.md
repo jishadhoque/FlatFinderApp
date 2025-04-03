@@ -8,7 +8,6 @@ npm install
 
 
 
-- `npm install react@rc react-dom@rc leaflet`
 
 # Setting it up:
 
