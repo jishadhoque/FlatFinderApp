@@ -30,6 +30,8 @@ Go to the directory storing the git repository, and run:
 ```PowerShell
 
 npm start
+or
+npm start dev
 
 ```
 
