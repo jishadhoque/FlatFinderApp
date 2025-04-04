@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Input } from "./components/ui/input";
-import { Button } from "./components/ui/button";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
-import "./login.css"; // This must match the file name exactly
+import "../css/login.css"; // This must match the file name exactly
 
 
 export default function LoginPage() {
