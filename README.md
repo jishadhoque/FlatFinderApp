@@ -21,6 +21,13 @@ npm -v
 ```
 
 For Windows, this needs to be done in Powershell. 
+then run this for certain funtions
+
+```
+npm install lucide-react
+
+```
+
 
 
 ## Running the code:
