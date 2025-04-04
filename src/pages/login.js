@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Input } from "../components/ui/input"; // Ensure correct path
+import { Button } from "../components/ui/button"; // Ensure correct path
 import { Eye, EyeOff } from "lucide-react";
-import "./login.css";
+import "../css/login.css"; // Ensure correct CSS import
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -81,3 +81,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
