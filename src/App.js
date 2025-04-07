@@ -1,21 +1,30 @@
 import React from "react";
-import SignupPage from "./pages/signup.js"; 
-import LoginPage from "./pages/login.js";
-import HomePage from "./pages/homepage.js"; 
-// Make sure the file is named Login.js
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css"; // Optional if you use global styles
+
+// Pages
+import HomePage from "./pages/homepage";
+import ListingsPage from "./pages/ListingsPage";
+import LoginPage from "./pages/login";
+import SignupPage from "./pages/signup"
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        {/* Homepage (default) */}
+        <Route path="/" element={<HomePage />} />
+
+        {/* Listings page */}
+        <Route path="/listings" element={<ListingsPage />} />
+
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/homepage" element={<HomePage />} />
+
+        {/* Login page */}
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+
