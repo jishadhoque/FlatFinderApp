@@ -2,12 +2,14 @@ import { useState } from "react";
 import { Input } from "../components/ui/input"; // Ensure correct path
 import { Button } from "../components/ui/button"; // Ensure correct path
 import { Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom"; 
 import "../css/login.css"; // Ensure correct CSS import
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -15,11 +17,20 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     console.log("Logging in with", { email, password });
+    if (email === "test@example.com" && password === "password123") {
+      alert("Login successful!");
+      navigate("/homepage"); // Make sure this route exists
+    } else {
+      alert("Invalid credentials");
+    }
   };
 
   const handleCreateAccount = () => {
     console.log("Redirect to create account page");
+    navigate("/signup");
   };
+
+  
 
   return (
     <div className="login-container">
