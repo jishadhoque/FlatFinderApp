@@ -94,7 +94,7 @@ export default function SignupPage() {
         <div className="right-section">
           <h2>Already have an account?</h2>
           <p>Log in to access your dashboard</p>
-          <button className="back-to-login" onClick={() => navigate("/login")}>
+          <button className="back-to-login" onClick={() => navigate("/")}>
             Back to Login
           </button>
         </div>

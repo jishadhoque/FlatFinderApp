@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         {/* Homepage (default) */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/homepage" element={<HomePage />} />
 
         {/* Listings page */}
         <Route path="/listings" element={<ListingsPage />} />
@@ -20,7 +20,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
 
         {/* Login page */}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LoginPage />} />
       </Routes>
     </Router>
   );

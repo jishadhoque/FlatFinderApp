@@ -6,13 +6,15 @@ import "../css/ListingsPage.css";
 
 function ListingsPage() {
   const [listings, setListings] = useState([]);
+  const [city, setCity] = useState("London");
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/listings?search=${search}`);
+        const res = await fetch(`http://localhost:5000/api/listings?city=${city}&search=${search}`);
         if (!res.ok) throw new Error("Failed to fetch listings");
         const data = await res.json();
         setListings(data);
@@ -28,14 +30,14 @@ function ListingsPage() {
     <div className="top-layout">
       {/* Top Navigation Bar */}
       <header className="top-nav">
-        <div className="logo" onClick={() => navigate("/")}>🏠 FlatFinder</div>
+        <div className="logo" onClick={() => navigate("/homepage")}>🏠 FlatFinder</div>
         <nav>
           <ul>
-            <li onClick={() => navigate("/")}>Home</li>
+            <li onClick={() => navigate("/homepage")}>Home</li>
             <li onClick={() => navigate("/listings")}>Search</li>
             <li onClick={() => navigate("/add-listing")}>Add Listings</li>
             <li>Inbox 🔴</li>
-            <li onClick={() => navigate("/login")}>Logout</li>
+            <li onClick={() => navigate("/")}>Login</li>
           </ul>
         </nav>
       </header>

@@ -14,14 +14,11 @@ function LoginPage() {
 
     const savedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (
-      savedUser &&
-      savedUser.email === email &&
-      savedUser.password === password
-    ) {
-      navigate("/listings");
+    if (email === "test@example.com" && password === "password123") {
+      alert("Login successful!");
+      navigate("/listings"); 
     } else {
-      alert("❌ Invalid email or password.");
+      alert("Invalid credentials");
     }
   };
 
@@ -63,7 +60,7 @@ function LoginPage() {
           <button onClick={() => navigate("/signup")} className="nav-btn">
             Create Account
           </button>
-          <button onClick={() => navigate("/")} className="nav-btn">
+          <button onClick={() => navigate("/homepage")} className="nav-btn">
             Go to Homepage
           </button>
           <button onClick={() => navigate("/listings")} className="nav-btn">
