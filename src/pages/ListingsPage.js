@@ -37,7 +37,7 @@ function ListingsPage() {
             <li onClick={() => navigate("/homepage")}>Home</li>
             <li onClick={() => navigate("/listings")}>Search</li>
             <li onClick={() => navigate("/add-listing")}>Add Listings</li>
-            <li>Inbox 🔴</li>
+            <li onClick={() => navigate("/inbox")}>Inbox 🔴</li>
             <li onClick={() => navigate("/")}>Logout</li>
           </ul>
         </nav>
@@ -73,8 +73,14 @@ function ListingsPage() {
 }
 
 function ListingCard({ flat }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="listing-card">
+    <div
+      className="listing-card"
+      onClick={() => navigate(`/listing/${flat.id}`)}
+      style={{ cursor: "pointer" }} // visually looks clickable
+    >
       <div className="image-wrapper">
         <img src={flat.imageUrl} alt={flat.title} />
       </div>
