@@ -18,7 +18,7 @@ function LoginPage() {
       const cleanPassword = password.trim();
       
       const { data, error } = await supabase
-        .from("login-details")
+        .from("login")
         .select("*")
         .eq("email", email)
         .single();
