@@ -23,14 +23,13 @@ const handleSignup = async () => {
   }
 
   try {
-    // 1. Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+   
 
     // 2. Insert into login table manually
     const { data, error } = await supabase.from("login").insert([
       {
         email,
-        password,
+        password, // storing the raw password directly
       },
     ]);
 
