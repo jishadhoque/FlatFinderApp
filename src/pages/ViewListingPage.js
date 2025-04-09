@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import supabase from "../config/supabaseClient"
@@ -25,8 +27,33 @@ export default function ViewListingPage() {
   const [reportReason, setReportReason] = useState("")
   const [reservationError, setReservationError] = useState("")
   const [activeTab, setActiveTab] = useState("photos")
+  const [showAmenitiesModal, setShowAmenitiesModal] = useState(false)
 
   const navigate = useNavigate()
+
+  // Add this sample amenities data (you can replace with your actual data)
+  const amenities = [
+    "Wifi",
+    "Kitchen",
+    "Washer",
+    "Dryer",
+    "Air conditioning",
+    "Heating",
+    "Dedicated workspace",
+    "TV",
+    "Hair dryer",
+    "Iron",
+    "Pool",
+    "Hot tub",
+    "Free parking",
+    "EV charger",
+    "Crib",
+    "Gym",
+    "BBQ grill",
+    "Breakfast",
+    "Indoor fireplace",
+    "Smoking allowed",
+  ]
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -272,6 +299,25 @@ export default function ViewListingPage() {
 
   return (
     <div className="view-listing-container">
+      {/* Amenities Modal */}
+      {showAmenitiesModal && (
+        <div className="popup-overlay">
+          <div className="popup-content amenities-modal">
+            <button className="close-popup" onClick={() => setShowAmenitiesModal(false)}>
+              <X size={16} />
+            </button>
+            <h3 className="amenities-modal-title">Amenities</h3>
+            <div className="amenities-list">
+              {amenities.map((amenity, index) => (
+                <div key={index} className="amenity-item">
+                  {amenity}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Reservation Popup */}
       {showReservePopup && (
         <div className="popup-overlay">
@@ -408,7 +454,9 @@ export default function ViewListingPage() {
 
               <div className="listing-section">
                 <h2>Amenities</h2>
-                <button className="show-all-btn">Show all 35 amenities</button>
+                <button className="show-all-btn" onClick={() => setShowAmenitiesModal(true)}>
+                  Show all 35 amenities
+                </button>
               </div>
 
               <div className="date-range-display">
