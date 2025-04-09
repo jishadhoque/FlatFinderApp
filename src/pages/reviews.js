@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Star } from "lucide-react"
 import supabase from "../config/supabaseClient"
-import "../css/Reviews.css"
+import "../css/reviews.css"
 
 // Sample reviews to display if no reviews exist in the database
 const sampleReviews = [

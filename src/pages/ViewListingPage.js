@@ -3,8 +3,8 @@ import { useParams, useNavigate } from "react-router-dom"
 import supabase from "../config/supabaseClient"
 import { ChevronLeft, ChevronRight, Flag, X } from "lucide-react"
 import "../css/ViewListingPage.css"
-import Reviews from "./Reviews"
-import "../css/Reviews.css"
+import Reviews from "./reviews"
+import "../css/reviews.css"
 
 export default function ViewListingPage() {
   const { id } = useParams()

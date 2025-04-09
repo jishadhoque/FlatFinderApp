@@ -7,7 +7,7 @@ import HomePage from "./pages/homepage";
 import ListingsPage from "./pages/ListingsPage";
 import SignUpPage from "./pages/signup";
 import LoginPage from "./pages/login";
-import ReviewsPage from "./pages/Reviews";
+import ReviewsPage from "./pages/reviews";
 import Messages from "./pages/messages";
 import ViewListingPage from "./pages/ViewListingPage";
 import InboxPage from "./pages/InboxPage";
