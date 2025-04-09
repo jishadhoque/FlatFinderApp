@@ -7,6 +7,7 @@ import HomePage from "./pages/homepage";
 import ListingsPage from "./pages/ListingsPage";
 import LoginPage from "./pages/login";
 import SignupPage from "./pages/signup"
+import Messages from "./pages/messages";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
 
         {/* Login page */}
         <Route path="/" element={<LoginPage />} />
+
+        <Route path="/messages" element={<Messages />} />
       </Routes>
     </Router>
   );
