@@ -1,0 +1,37 @@
+.view-listing-page {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: "Segoe UI", sans-serif;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  
+  .back-btn {
+    margin-bottom: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    color: #e4574c;
+  }
+  
+  .listing-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .listing-details h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+  
+  .listing-details p {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  
