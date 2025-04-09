@@ -1,38 +1,52 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Pages
-import HomePage from "./pages/homepage"
-import ListingsPage from "./pages/ListingsPage"
-import LoginPage from "./pages/login"
-import SignupPage from "./pages/signup"
-import ViewListingPage from "./pages/ViewListingPage"
-import InboxPage from "./pages/InboxPage"
-import AddListingPage from "./pages/AddListingsPage"
+import HomePage from "./pages/homepage";
+import ListingsPage from "./pages/ListingsPage";
+import SignUpPage from "./pages/signup";
+import LoginPage from "./pages/login";
+import ReviewsPage from "./pages/reviews";
+import Messages from "./pages/Messages";
+import ViewListingPage from "./pages/ViewListingPage";
+import InboxPage from "./pages/InboxPage";
+import AddListingPage from "./pages/addListingPage";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Homepage (default) */}
-        <Route path="/homepage" element={<HomePage />} />
+    return (
+        <Router>
+            <Routes>
+                {/* Homepage */}
+                <Route path="/homepage" element={<HomePage />} />
 
-        {/* Listings page */}
-        <Route path="/listings" element={<ListingsPage />} />
+                {/* Listings */}
+                <Route path="/listings" element={<ListingsPage />} />
+                  
+                <Route path="/listings/:id" element={<ViewListingPage />} />
 
-        <Route path="/signup" element={<SignupPage />} />
+                {/* Sign up */}
+                <Route path="/signup" element={<SignUpPage />} />
 
-        <Route path="/listing/:id" element={<ViewListingPage />} />
+                {/* Login */}
+                <Route path="/" element={<LoginPage />} />
+                  
+                <Route path="/add-listing" element={<AddListingPage />} />
 
-        {/* Inbox page */}
-        <Route path="/inbox" element={<InboxPage />} />
+                {/* Reviews */}
+                <Route path="/reviews" element={<ReviewsPage />} />
 
-        <Route path="/add-listing" element={<AddListingPage />} />
+                {/* Messages */}
+                <Route path="/messages" element={<Messages />} />
 
-        {/* Login page */}
-        <Route path="/" element={<LoginPage />} />
-      </Routes>
-    </Router>
-  )
+                {/* Inbox */}
+                <Route path="/inbox" element={<InboxPage />} />
+
+                {/* Add Listing */}
+                <Route path="/add-listing" element={<AddListingPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;
