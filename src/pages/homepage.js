@@ -1,4 +1,5 @@
 // /client/src/pages/homepage.js
+// /client/src/pages/homepage.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/homepage.css"; // Adjusted path to reflect correct location of homepage.css
