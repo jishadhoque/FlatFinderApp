@@ -1,24 +1,49 @@
-// /client/src/pages/login.js
-
+import supabase from "../config/supabaseClient";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/login.css";
 
 function LoginPage() {
+  const [fetchError, setFetchError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const savedUser = JSON.parse(localStorage.getItem("user"));
+    try {
 
-    if (email === "test@example.com" && password === "password123") {
-      alert("Login successful!");
-      navigate("/listings"); 
-    } else {
-      alert("Invalid credentials");
+      const cleanEmail = email.trim().toLowerCase();
+      const cleanPassword = password.trim();
+      
+      const { data, error } = await supabase
+        .from("login-details")
+        .select("*")
+        .eq("email", email)
+        .single();
+
+        console.log("Input Email:", cleanEmail);
+        console.log("Input Password:", cleanPassword);
+        console.log("Fetched Supabase Data:", data);
+        console.log("Fetch Error (if any):", error);
+
+
+      if (error || !data) {
+        alert("User not found");
+        return;
+      }
+
+      if (data.password === password) {
+        alert("Login successful!");
+        localStorage.setItem("user", JSON.stringify(data)); // Optional
+        navigate("/listings");
+      } else {
+        alert("Incorrect password");
+      }
+    } catch (err) {
+      console.error("Login error:", err.message);
+      setFetchError("Something went wrong during login");
     }
   };
 
@@ -26,7 +51,7 @@ function LoginPage() {
     <div className="login-container">
       <div className="login-box">
         <h2>Welcome Back!</h2>
-        <p style={{ marginBottom: "30px" }}>please enter your details</p>
+        <p style={{ marginBottom: "30px" }}>Please enter your details</p>
 
         <form onSubmit={handleLogin}>
           <div className="form-group">
@@ -73,6 +98,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-
-
