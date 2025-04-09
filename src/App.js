@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,7 @@ function App() {
 
                 {/* Listings */}
                 <Route path="/listings" element={<ListingsPage />} />
+                  
                 <Route path="/listings/:id" element={<ViewListingPage />} />
 
                 {/* Sign up */}
@@ -28,6 +30,8 @@ function App() {
 
                 {/* Login */}
                 <Route path="/" element={<LoginPage />} />
+                  
+                <Route path="/add-listing" element={<AddListingPage />} />
 
                 {/* Reviews */}
                 <Route path="/reviews" element={<ReviewsPage />} />
