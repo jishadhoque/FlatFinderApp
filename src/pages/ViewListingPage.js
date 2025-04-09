@@ -1,4 +1,3 @@
-"use client"
 
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
@@ -19,8 +18,11 @@ export default function ViewListingPage() {
   const [showCalendar, setShowCalendar] = useState(false)
   const [guests, setGuests] = useState(1)
   const [showGuestDropdown, setShowGuestDropdown] = useState(false)
+  const [showReservePopup, setShowReservePopup] = useState(false)
+  const [reservationConfirmed, setReservationConfirmed] = useState(false)
   const [showReportModal, setShowReportModal] = useState(false)
   const [reportReason, setReportReason] = useState("")
+  const [reservationError, setReservationError] = useState("")
 
   const navigate = useNavigate()
 
@@ -189,7 +191,60 @@ export default function ViewListingPage() {
   }
 
   const handleReserve = () => {
-    alert("Booking request submitted! This would connect to a payment system in a real application.")
+    // Validate dates before showing popup
+    if (!selectedDates.checkIn || !selectedDates.checkOut) {
+      // Use our custom popup instead of alert
+      setReservationError("Please select both check-in and check-out dates before reserving.")
+      setShowReservePopup(true)
+      return
+    }
+
+    // Clear any previous errors
+    setReservationError("")
+    setShowReservePopup(true)
+  }
+
+  const confirmReservation = async () => {
+    // If there's an error message showing, just close the popup when user clicks Reserve
+    if (reservationError) {
+      setShowReservePopup(false)
+      setReservationError("")
+      return
+    }
+
+    const user = JSON.parse(localStorage.getItem("user") || "{}")
+
+    if (!user?.email) {
+      setReservationError("You must be logged in to make a reservation.")
+      return
+    }
+
+    try {
+      const { error } = await supabase.from("reservations").insert([
+        {
+          user_email: user.email,
+          listing_id: listing.id,
+          check_in: selectedDates.checkIn.toISOString().split("T")[0],
+          check_out: selectedDates.checkOut.toISOString().split("T")[0],
+          guests,
+          total_price: listing.price * calculateNights(),
+        },
+      ])
+
+      if (error) {
+        console.error("❌ Supabase reservation error:", error.message)
+        setReservationError("Failed to save reservation. Please try again.")
+      } else {
+        setReservationConfirmed(true)
+        setTimeout(() => {
+          setShowReservePopup(false)
+          setReservationConfirmed(false)
+        }, 3000)
+      }
+    } catch (err) {
+      console.error("❌ Unexpected error:", err)
+      setReservationError("An unexpected error occurred while reserving.")
+    }
   }
 
   const handleReportSubmit = () => {
@@ -215,6 +270,106 @@ export default function ViewListingPage() {
 
   return (
     <div className="view-listing-container">
+      {/* Reservation Popup */}
+      {showReservePopup && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <button
+              className="close-popup"
+              onClick={() => {
+                setShowReservePopup(false)
+                setReservationError("")
+              }}
+            >
+              <X size={16} />
+            </button>
+
+            {reservationConfirmed ? (
+              <div className="confirmation-message">
+                <h3>✅ Reservation Confirmed!</h3>
+                <p>Your stay has been reserved! You will receive a confirmation email shortly.</p>
+                <p>If you wish to cancel this booking, please email us at:</p>
+                <p className="contact-email">fdmgroup46@gmail.com</p>
+              </div>
+            ) : reservationError ? (
+              <div className="confirmation-message">
+                <h3 style={{ color: "#e31c5f" }}>⚠️ Error</h3>
+                <p>{reservationError}</p>
+                <button
+                  className="confirm-btn"
+                  style={{ marginTop: "15px" }}
+                  onClick={() => {
+                    setShowReservePopup(false)
+                    setReservationError("")
+                  }}
+                >
+                  OK
+                </button>
+              </div>
+            ) : listing ? (
+              <>
+                <h3 style={{ textAlign: "center", marginBottom: "15px", fontSize: "18px" }}>
+                  Confirm Your Reservation
+                </h3>
+
+                <div className="popup-listing-summary">
+                  <img
+                    src={listing.imageUrl || "/placeholder.svg"}
+                    alt={listing.title}
+                    className="popup-listing-image"
+                  />
+                  <div className="popup-listing-details">
+                    <h4>{listing.title}</h4>
+                    <p>{listing.location}</p>
+                  </div>
+                </div>
+
+                <div className="popup-reservation-details">
+                  <div className="popup-detail-item">
+                    <span>Dates:</span>
+                    <span>
+                      {selectedDates.checkIn ? formatDate(selectedDates.checkIn) : "Not set"} -{" "}
+                      {selectedDates.checkOut ? formatDate(selectedDates.checkOut) : "Not set"}
+                    </span>
+                  </div>
+
+                  <div className="popup-detail-item">
+                    <span>Guests:</span>
+                    <span>
+                      {guests} guest{guests !== 1 ? "s" : ""}
+                    </span>
+                  </div>
+
+                  <div className="popup-detail-item">
+                    <span>Price ({nights} nights):</span>
+                    <span>£{totalPrice}</span>
+                  </div>
+
+                  <div className="popup-detail-item">
+                    <span>Service fee:</span>
+                    <span>£{serviceFee}</span>
+                  </div>
+
+                  <div className="popup-detail-item total">
+                    <span>Total:</span>
+                    <span>£{grandTotal}</span>
+                  </div>
+                </div>
+
+                <div className="popup-actions">
+                  <button className="confirm-btn" onClick={confirmReservation}>
+                    Reserve Now
+                  </button>
+                  <button className="cancel-btn" onClick={() => setShowReservePopup(false)}>
+                    Cancel
+                  </button>
+                </div>
+              </>
+            ) : null}
+          </div>
+        </div>
+      )}
+
       <div className="listing-navigation">
         <button onClick={() => navigate(-1)} className="back-btn">
           <ChevronLeft size={16} /> Back
