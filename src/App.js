@@ -1,34 +1,48 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-
 // Pages
 import HomePage from "./pages/homepage";
 import ListingsPage from "./pages/ListingsPage";
+import SignUpPage from "./pages/signup";
 import LoginPage from "./pages/login";
-import SignupPage from "./pages/signup"
-import Messages from "./pages/messages";
+import ReviewsPage from "./pages/reviews";
+import Messages from "./pages/Messages";
+import ViewListingPage from "./pages/ViewListingPage";
+import InboxPage from "./pages/InboxPage";
+import AddListingPage from "./pages/addListingPage";
 
 function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Homepage (default) */}
-        <Route path="/homepage" element={<HomePage />} />
+    return (
+        <Router>
+            <Routes>
+                {/* Homepage */}
+                <Route path="/homepage" element={<HomePage />} />
 
-        {/* Listings page */}
-        <Route path="/listings" element={<ListingsPage />} />
+                {/* Listings */}
+                <Route path="/listings" element={<ListingsPage />} />
+                <Route path="/listings/:id" element={<ViewListingPage />} />
 
-        <Route path="/signup" element={<SignupPage />} />
+                {/* Sign up */}
+                <Route path="/signup" element={<SignUpPage />} />
 
-        {/* Login page */}
-        <Route path="/" element={<LoginPage />} />
+                {/* Login */}
+                <Route path="/" element={<LoginPage />} />
 
-        <Route path="/messages" element={<Messages />} />
-      </Routes>
-    </Router>
-  );
+                {/* Reviews */}
+                <Route path="/reviews" element={<ReviewsPage />} />
+
+                {/* Messages */}
+                <Route path="/messages" element={<Messages />} />
+
+                {/* Inbox */}
+                <Route path="/inbox" element={<InboxPage />} />
+
+                {/* Add Listing */}
+                <Route path="/add-listing" element={<AddListingPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
-

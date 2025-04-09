@@ -85,9 +85,6 @@ function LoginPage() {
           <button onClick={() => navigate("/signup")} className="nav-btn">
             Create Account
           </button>
-          <button onClick={() => navigate("/homepage")} className="nav-btn">
-            Go to Homepage
-          </button>
           <button onClick={() => navigate("/listings")} className="nav-btn">
             Browse Listings
           </button>

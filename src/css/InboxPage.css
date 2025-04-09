@@ -1,0 +1,248 @@
+/* Inbox Page Styles */
+.inbox-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+  
+  .inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .inbox-header h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .new-message-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .new-message-btn:hover {
+    background-color: #3a7bc8;
+  }
+  
+  .inbox-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-height: 600px;
+  }
+  
+  /* Message List Styles */
+  .message-list {
+    border-right: 1px solid #eaeaea;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+  
+  .message-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eaeaea;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .message-item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .message-item.unread {
+    background-color: #f0f7ff;
+    font-weight: 500;
+  }
+  
+  .message-item.unread:hover {
+    background-color: #e5f1ff;
+  }
+  
+  .message-preview {
+    flex: 1;
+  }
+  
+  .message-sender {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .message-subject {
+    color: #555;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+  }
+  
+  .message-date {
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .delete-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-btn:hover {
+    background-color: #f1f1f1;
+    color: #e74c3c;
+  }
+  
+  /* Message Detail Styles */
+  .message-detail {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+  
+  .no-message-selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #888;
+    font-style: italic;
+  }
+  
+  .message-detail-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .back-btn {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    margin-right: 15px;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  .back-btn:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .message-detail-header h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .message-info {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  .message-info p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .message-body {
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  
+  .reply-section h4 {
+    margin-bottom: 10px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    font-family: inherit;
+    margin-bottom: 15px;
+  }
+  
+  .send-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+  
+  .send-btn:hover {
+    background-color: #3a7bc8;
+  }
+  
+  /* New Message Form Styles */
+  .new-message-form {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+  }
+  
+  /* Loading and Empty States */
+  .loading-text,
+  .no-messages {
+    padding: 20px;
+    text-align: center;
+    color: #888;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .inbox-content {
+      grid-template-columns: 1fr;
+    }
+  
+    .message-list {
+      border-right: none;
+      border-bottom: 1px solid #eaeaea;
+      max-height: 300px;
+    }
+  }
