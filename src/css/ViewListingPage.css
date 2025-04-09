@@ -133,6 +133,59 @@
   background-color: #f7f7f7;
 }
 
+/* Amenities Preview Styles */
+.amenities-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.amenity-category-preview h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222222;
+}
+
+.amenity-items-preview {
+  display: grid;
+  gap: 8px;
+}
+
+.amenity-item-preview {
+  font-size: 14px;
+  color: #222222;
+}
+
+/* Amenities Modal Styles */
+.amenities-modal {
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.amenities-modal-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #222222;
+}
+
+.amenities-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.amenity-item {
+  font-size: 16px;
+  color: #222222;
+  padding: 8px 0;
+}
+
 /* Date Range Display */
 .date-range-display {
   margin-top: 32px;
@@ -759,6 +812,10 @@
     grid-template-columns: 1fr;
     gap: 24px;
   }
+
+  .amenities-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 576px) {
@@ -773,5 +830,10 @@
   .date-input:first-child {
     border-right: none;
     border-bottom: 1px solid #dddddd;
+  }
+
+  .amenities-modal {
+    padding: 16px;
+    width: 90%;
   }
 }
