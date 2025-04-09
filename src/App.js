@@ -11,7 +11,7 @@ import ReviewsPage from "./pages/reviews";
 import Messages from "./pages/Messages";
 import ViewListingPage from "./pages/ViewListingPage";
 import InboxPage from "./pages/InboxPage";
-import AddListingPage from "./pages/addListingPage";
+import AddListingPage from "./pages/AddListingPage";
 
 function App() {
     return (

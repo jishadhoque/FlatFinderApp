@@ -1,14 +1,14 @@
 /* --- Main Layout --- */
 .top-layout {
   font-family: "Segoe UI", sans-serif;
-  background-color: #f5f5f5;
+  background-color: white;
   min-height: 100vh;
 }
 
 /* --- Top Navigation Bar --- */
 .top-nav {
-  background-color: #0d1b2a;
-  color: white;
+  background-color: black; /* Dark background */
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -22,6 +22,7 @@
   font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;
+  color: #ffffff;
 }
 
 .top-nav ul {
@@ -35,6 +36,7 @@
 .top-nav ul li {
   cursor: pointer;
   font-weight: 500;
+  color: #ffffff;
   transition: color 0.2s;
 }
 
@@ -49,28 +51,30 @@
   padding: 0 20px;
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 /* --- Search Bar --- */
 .search-bar {
+  display: flex;
+  justify-content: flex-start;
   width: 100%;
-  margin-bottom: 20px;
 }
 
 .search-bar input {
-  width: 100%;
-  max-width: 400px;
   padding: 12px 16px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
 }
 
 /* --- Section Heading --- */
 .content h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  margin: 20px 0 24px 0;
+  margin: 0;
   color: #0d1b2a;
 }
 
