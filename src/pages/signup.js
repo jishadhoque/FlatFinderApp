@@ -30,7 +30,7 @@ const handleSignup = async () => {
     const { data, error } = await supabase.from("login").insert([
       {
         email,
-        password: hashedPassword,
+        password,
       },
     ]);
 
