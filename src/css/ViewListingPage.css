@@ -1,37 +1,598 @@
-.view-listing-page {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    font-family: "Segoe UI", sans-serif;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+.view-listing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Circular", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.listing-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #222;
+  padding: 8px 0;
+}
+
+.listing-nav-tabs {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #222;
+  padding: 8px 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-tab:hover {
+  color: #e41d57;
+}
+
+.nav-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #222;
+}
+
+.listing-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+}
+
+.listing-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.listing-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #e41d57;
+}
+
+.listing-location {
+  font-size: 16px;
+  color: #222;
+  margin-bottom: 24px;
+}
+
+.listing-section {
+  margin-bottom: 32px;
+}
+
+.listing-section h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.listing-description {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222;
+}
+
+.show-all-btn {
+  background: transparent;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.date-range-display {
+  margin-top: 32px;
+  position: relative;
+}
+
+.date-range-display h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.date-range-display p {
+  font-size: 16px;
+  color: #222;
+}
+
+/* Calendar Styles */
+.calendar-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  z-index: 10;
+  margin-top: 16px;
+  width: 800px;
+}
+
+.calendar-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.calendar-nav-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.calendars-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.calendar-month {
+  width: 100%;
+}
+
+.calendar-header {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.calendar-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 12px;
+  color: #717171;
+  margin-bottom: 8px;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.calendar-day:hover {
+  background-color: #f7f7f7;
+}
+
+.calendar-day.empty {
+  cursor: default;
+}
+
+.calendar-day.in-range {
+  background-color: #f7f7f7;
+  border-radius: 0;
+}
+
+.calendar-day.check-in {
+  background-color: #222;
+  color: white;
+  border-radius: 50% 0 0 50%;
+}
+
+.calendar-day.check-out {
+  background-color: #222;
+  color: white;
+  border-radius: 0 50% 50% 0;
+}
+
+.clear-dates-btn {
+  background: transparent;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #222;
+  float: right;
+}
+
+/* Booking Card Styles */
+.booking-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+  position: sticky;
+  top: 24px;
+}
+
+.price-container {
+  margin-bottom: 24px;
+}
+
+.price-display {
+  display: flex;
+  align-items: baseline;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+.price-unit {
+  font-size: 16px;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.date-picker-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.date-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.date-input {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.date-input:first-child {
+  border-right: 1px solid #ddd;
+}
+
+.date-input label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.date-input div {
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.guests-dropdown-container {
+  position: relative;
+  border-top: 1px solid #ddd;
+}
+
+.guests-input {
+  padding: 12px;
+  cursor: pointer;
+}
+
+.guests-input label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.guests-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.dropdown-arrow {
+  border: solid #222;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  transition: transform 0.2s;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(-135deg);
+}
+
+.guests-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  z-index: 5;
+}
+
+.guest-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guest-type h4 {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.guest-type p {
+  font-size: 14px;
+  color: #717171;
+}
+
+.guest-counter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.guest-counter button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #b0b0b0;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guest-counter button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.reserve-btn {
+  background-color: #e41d57;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.no-charge-text {
+  text-align: center;
+  font-size: 14px;
+  color: #222;
+  margin-top: 8px;
+}
+
+.price-breakdown {
+  margin-top: 24px;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
+
+.price-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #ddd;
+}
+
+.report-listing {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.report-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  color: #222;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.report-modal {
+  background-color: white;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.close-modal {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #717171;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-body p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.modal-body textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 16px;
+  resize: vertical;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #eaeaea;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.submit-report-btn {
+  background-color: #e41d57;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Loading and Error States */
+.loading-container,
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  font-size: 18px;
+  color: #717171;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .listing-content {
+    grid-template-columns: 1fr;
   }
-  
-  .back-btn {
-    margin-bottom: 20px;
-    background: transparent;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    color: #e4574c;
+
+  .booking-card {
+    position: static;
+    margin-top: 32px;
   }
-  
-  .listing-image {
+
+  .calendar-container {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 20px;
   }
-  
-  .listing-details h2 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
+
+  .calendars-wrapper {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
-  
-  .listing-details p {
-    margin-bottom: 10px;
-    font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  .listing-nav-tabs {
+    display: none;
   }
-  
+
+  .date-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .date-input:first-child {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+}
