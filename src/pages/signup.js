@@ -1,49 +1,52 @@
-// /client/src/pages/signup.js
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-import "../css/signup.css"; // Make sure the file exists
+import supabase from "../config/supabaseClient";
+import bcrypt from "bcryptjs"; // Install with: npm install bcryptjs
+import "../css/signup.css";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
-  const handleSignup = async () => {
-    if (!email || !password) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    try {
-      const res = await fetch("http://localhost:5000/api/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-
-      if (res.status === 201) {
-        alert("✅ Account created!");
-        navigate("/login");
-      } else if (res.status === 409) {
-        alert("⚠️ Email already registered.");
-      } else {
-        alert("❌ Signup failed.");
-        console.error(data.error);
-      }
-    } catch (err) {
-      console.error("Signup error:", err);
-      alert("Server error.");
-    }
-  };
-
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
+  // ✅ Handle signup using Supabase Auth
+  
+
+const handleSignup = async () => {
+  if (!email || !password) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  try {
+    // 1. Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // 2. Insert into login table manually
+    const { data, error } = await supabase.from("login").insert([
+      {
+        email,
+        password: hashedPassword,
+      },
+    ]);
+
+    if (error) {
+      console.error("❌ Supabase insert error:", error);
+      alert("Signup failed: " + error.message);
+    } else {
+      alert("✅ Account created successfully!");
+      navigate("/");
+    }
+  } catch (err) {
+    console.error("❌ Unexpected error:", err);
+    alert("Something went wrong. Please try again.");
+  }
+};
+
 
   return (
     <div className="signup-container">

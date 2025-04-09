@@ -37,7 +37,7 @@ function ListingsPage() {
             <li onClick={() => navigate("/listings")}>Search</li>
             <li onClick={() => navigate("/add-listing")}>Add Listings</li>
             <li>Inbox 🔴</li>
-            <li onClick={() => navigate("/")}>Login</li>
+            <li onClick={() => navigate("/")}>logout</li>
           </ul>
         </nav>
       </header>
