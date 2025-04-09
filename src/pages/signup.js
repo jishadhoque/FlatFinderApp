@@ -1,51 +1,51 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import supabase from "../config/supabaseClient";
-import bcrypt from "bcryptjs"; // Install with: npm install bcryptjs
 import "../css/signup.css";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
-  // ✅ Handle signup using Supabase Auth
-  
 
-const handleSignup = async () => {
-  if (!email || !password) {
-    alert("Please fill in all fields.");
-    return;
-  }
-
-  try {
-   
-
-    // 2. Insert into login table manually
-    const { data, error } = await supabase.from("login").insert([
-      {
-        email,
-        password, // storing the raw password directly
-      },
-    ]);
-
-    if (error) {
-      console.error("❌ Supabase insert error:", error);
-      alert("Signup failed: " + error.message);
-    } else {
-      alert("✅ Account created successfully!");
-      navigate("/");
+  const handleSignup = async () => {
+    if (!email || !password || !confirmPassword) {
+      alert("Please fill in all fields.");
+      return;
     }
-  } catch (err) {
-    console.error("❌ Unexpected error:", err);
-    alert("Something went wrong. Please try again.");
-  }
-};
 
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    try {
+      const { error } = await supabase.from("login").insert([
+        {
+          email,
+          password, // storing raw password
+        },
+      ]);
+
+      if (error) {
+        console.error("❌ Supabase insert error:", error);
+        alert("Signup failed: " + error.message);
+      } else {
+        alert("✅ Account created successfully!");
+        navigate("/");
+      }
+    } catch (err) {
+      console.error("❌ Unexpected error:", err);
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <div className="signup-container">
@@ -87,6 +87,19 @@ const handleSignup = async () => {
               </button>
             </div>
           </div>
+
+          <div className="input-group">
+            <label>Confirm Password</label>
+            <input
+              type="password" // always hidden
+              value={confirmPassword}
+              placeholder="Re-enter your password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="input-field"
+              required
+            />
+          </div>
+
 
           <button className="create-account-btn" onClick={handleSignup}>
             Create Account
