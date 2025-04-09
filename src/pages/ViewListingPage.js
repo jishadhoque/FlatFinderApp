@@ -1,9 +1,10 @@
-
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import supabase from "../config/supabaseClient"
 import { ChevronLeft, ChevronRight, Flag, X } from "lucide-react"
 import "../css/ViewListingPage.css"
+import Reviews from "./Reviews"
+import "../css/Reviews.css"
 
 export default function ViewListingPage() {
   const { id } = useParams()
@@ -23,6 +24,7 @@ export default function ViewListingPage() {
   const [showReportModal, setShowReportModal] = useState(false)
   const [reportReason, setReportReason] = useState("")
   const [reservationError, setReservationError] = useState("")
+  const [activeTab, setActiveTab] = useState("photos")
 
   const navigate = useNavigate()
 
@@ -375,72 +377,88 @@ export default function ViewListingPage() {
           <ChevronLeft size={16} /> Back
         </button>
         <div className="listing-nav-tabs">
-          <button className="nav-tab active">Photos</button>
-          <button className="nav-tab">Reviews</button>
+          <button
+            className={`nav-tab ${activeTab === "photos" ? "active" : ""}`}
+            onClick={() => setActiveTab("photos")}
+          >
+            Photos
+          </button>
+          <button
+            className={`nav-tab ${activeTab === "reviews" ? "active" : ""}`}
+            onClick={() => setActiveTab("reviews")}
+          >
+            Reviews
+          </button>
         </div>
       </div>
 
       <div className="listing-content">
         <div className="listing-details">
-          <img src={listing.imageUrl || "/placeholder.svg"} alt={listing.title} className="listing-image" />
+          {activeTab === "photos" ? (
+            <>
+              <img src={listing.imageUrl || "/placeholder.svg"} alt={listing.title} className="listing-image" />
 
-          <h1 className="listing-title">{listing.title}</h1>
-          <p className="listing-location">{listing.location}</p>
+              <h1 className="listing-title">{listing.title}</h1>
+              <p className="listing-location">{listing.location}</p>
 
-          <div className="listing-section">
-            <h2>Description</h2>
-            <p className="listing-description">{listing.description}</p>
-          </div>
-
-          <div className="listing-section">
-            <h2>Amenities</h2>
-            <button className="show-all-btn">Show all 35 amenities</button>
-          </div>
-
-          <div className="date-range-display">
-            <h2>
-              {nights} nights in {listing.location.split(",")[0]}
-            </h2>
-            <p>
-              {selectedDates.checkIn
-                ? selectedDates.checkIn.toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })
-                : "Select check-in"}{" "}
-              -{" "}
-              {selectedDates.checkOut
-                ? selectedDates.checkOut.toLocaleDateString("en-GB", {
-                    day: "numeric",
-                    month: "short",
-                    year: "numeric",
-                  })
-                : "Select check-out"}
-            </p>
-
-            {showCalendar && (
-              <div className="calendar-container">
-                <div className="calendar-navigation">
-                  <button onClick={prevMonth} className="calendar-nav-btn">
-                    <ChevronLeft size={16} />
-                  </button>
-                  <button onClick={nextMonth} className="calendar-nav-btn">
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-
-                <div className="calendars-wrapper">
-                  {renderCalendar(currentMonth, currentYear)}
-                  {renderCalendar((currentMonth + 1) % 12, currentMonth === 11 ? currentYear + 1 : currentYear)}
-                </div>
-
-                <button onClick={clearDates} className="clear-dates-btn">
-                  Clear dates
-                </button>
+              <div className="listing-section">
+                <h2>Description</h2>
+                <p className="listing-description">{listing.description}</p>
               </div>
-            )}
-          </div>
+
+              <div className="listing-section">
+                <h2>Amenities</h2>
+                <button className="show-all-btn">Show all 35 amenities</button>
+              </div>
+
+              <div className="date-range-display">
+                <h2>
+                  {nights} nights in {listing.location.split(",")[0]}
+                </h2>
+                <p>
+                  {selectedDates.checkIn
+                    ? selectedDates.checkIn.toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "Select check-in"}{" "}
+                  -{" "}
+                  {selectedDates.checkOut
+                    ? selectedDates.checkOut.toLocaleDateString("en-GB", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : "Select check-out"}
+                </p>
+
+                {showCalendar && (
+                  <div className="calendar-container">
+                    <div className="calendar-navigation">
+                      <button onClick={prevMonth} className="calendar-nav-btn">
+                        <ChevronLeft size={16} />
+                      </button>
+                      <button onClick={nextMonth} className="calendar-nav-btn">
+                        <ChevronRight size={16} />
+                      </button>
+                    </div>
+
+                    <div className="calendars-wrapper">
+                      {renderCalendar(currentMonth, currentYear)}
+                      {renderCalendar((currentMonth + 1) % 12, currentMonth === 11 ? currentYear + 1 : currentYear)}
+                    </div>
+
+                    <button onClick={clearDates} className="clear-dates-btn">
+                      Clear dates
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+          ) : (
+            <Reviews listingId={id} />
+          )}
         </div>
 
         <div className="booking-card">

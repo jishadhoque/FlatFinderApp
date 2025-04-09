@@ -3,67 +3,19 @@
   margin: 0 auto;
   padding: 20px;
   font-family: "Circular", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: #222222;
+  background-color: #ffffff;
 }
 
+/* Navigation and Tabs */
 .listing-navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #ebebeb;
 }
-
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.45);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-
-.reserve-popup {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 400px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.reserve-popup h3 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-}
-
-.reserve-popup p {
-  margin: 8px 0;
-}
-
-.confirm-btn {
-  background-color: #e4574c;
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 12px 0;
-  font-weight: 500;
-}
-
-.cancel-btn {
-  background-color: transparent;
-  color: #333;
-  border: none;
-  margin-top: 8px;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 
 .back-btn {
   display: flex;
@@ -73,7 +25,13 @@
   font-size: 16px;
   cursor: pointer;
   color: #222;
-  padding: 8px 0;
+  padding: 8px 12px;
+  border-radius: 24px;
+  transition: background-color 0.2s;
+}
+
+.back-btn:hover {
+  background-color: #f7f7f7;
 }
 
 .listing-nav-tabs {
@@ -90,28 +48,35 @@
   padding: 8px 0;
   position: relative;
   transition: color 0.2s ease;
+  font-weight: 500;
 }
 
 .nav-tab:hover {
   color: #e41d57;
 }
 
+.nav-tab.active {
+  font-weight: 600;
+}
+
 .nav-tab.active::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -17px;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: #222;
 }
 
+/* Main Content Layout */
 .listing-content {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 48px;
 }
 
+/* Listing Details */
 .listing-image {
   width: 100%;
   height: 400px;
@@ -124,7 +89,7 @@
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 8px;
-  color: #e41d57;
+  color: #222222;
 }
 
 .listing-location {
@@ -141,6 +106,7 @@
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 16px;
+  color: #222222;
 }
 
 .listing-description {
@@ -149,16 +115,25 @@
   color: #222;
 }
 
+/* Improved contrast for the show all amenities button */
 .show-all-btn {
-  background: transparent;
-  border: 1px solid #222;
+  background: #ffffff;
+  border: 1px solid #222222;
   border-radius: 8px;
   padding: 8px 16px;
   font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   margin-top: 16px;
+  transition: all 0.2s;
+  color: #222222;
 }
 
+.show-all-btn:hover {
+  background-color: #f7f7f7;
+}
+
+/* Date Range Display */
 .date-range-display {
   margin-top: 32px;
   position: relative;
@@ -168,6 +143,7 @@
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 8px;
+  color: #222222;
 }
 
 .date-range-display p {
@@ -182,7 +158,7 @@
   left: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 24px;
   z-index: 10;
   margin-top: 16px;
@@ -205,6 +181,13 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s;
+  color: #222222;
+}
+
+.calendar-nav-btn:hover {
+  border-color: #222;
+  background-color: #f7f7f7;
 }
 
 .calendars-wrapper {
@@ -225,6 +208,7 @@
 .calendar-header h3 {
   font-size: 16px;
   font-weight: 600;
+  color: #222222;
 }
 
 .calendar-weekdays {
@@ -250,6 +234,8 @@
   cursor: pointer;
   border-radius: 50%;
   font-size: 14px;
+  transition: all 0.2s;
+  color: #222222;
 }
 
 .calendar-day:hover {
@@ -288,15 +274,20 @@
   float: right;
 }
 
-/* Booking Card Styles */
+.clear-dates-btn:hover {
+  color: #e41d57;
+}
+
+/* Booking Card Styles - Updated to match screenshot */
 .booking-card {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   height: fit-content;
   position: sticky;
   top: 24px;
+  background-color: #ffffff;
 }
 
 .price-container {
@@ -312,10 +303,12 @@
   font-size: 22px;
   font-weight: 600;
   margin-right: 4px;
+  color: #222222;
 }
 
 .price-unit {
   font-size: 16px;
+  color: #222222;
 }
 
 .booking-form {
@@ -325,9 +318,10 @@
 }
 
 .date-picker-container {
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 8px;
   overflow: hidden;
+  background-color: #ffffff;
 }
 
 .date-inputs {
@@ -338,27 +332,30 @@
 .date-input {
   padding: 12px;
   cursor: pointer;
+  background-color: #ffffff;
 }
 
 .date-input:first-child {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #dddddd;
 }
 
 .date-input label {
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #222;
+  color: #717171;
 }
 
 .date-input div {
   font-size: 14px;
   margin-top: 4px;
+  color: #222222;
 }
 
 .guests-dropdown-container {
   position: relative;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
+  background-color: #ffffff;
 }
 
 .guests-input {
@@ -370,7 +367,7 @@
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #222;
+  color: #717171;
 }
 
 .guests-display {
@@ -379,10 +376,11 @@
   align-items: center;
   font-size: 14px;
   margin-top: 4px;
+  color: #222222;
 }
 
 .dropdown-arrow {
-  border: solid #222;
+  border: solid #222222;
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 3px;
@@ -416,6 +414,7 @@
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 4px;
+  color: #222222;
 }
 
 .guest-type p {
@@ -440,6 +439,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s;
+  color: #222222;
+}
+
+.guest-counter button:hover:not(:disabled) {
+  border-color: #222222;
 }
 
 .guest-counter button:disabled {
@@ -447,8 +452,9 @@
   cursor: not-allowed;
 }
 
+/* Improved contrast for the reserve button */
 .reserve-btn {
-  background-color: #e41d57;
+  background-color: #4169e1; /* Royal blue color to match screenshot */
   color: white;
   border: none;
   border-radius: 8px;
@@ -457,18 +463,23 @@
   font-weight: 600;
   cursor: pointer;
   margin-top: 16px;
+  transition: background-color 0.2s;
+}
+
+.reserve-btn:hover {
+  background-color: #3a5ecc;
 }
 
 .no-charge-text {
   text-align: center;
   font-size: 14px;
-  color: #222;
+  color: #717171;
   margin-top: 8px;
 }
 
 .price-breakdown {
   margin-top: 24px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
   padding-top: 16px;
 }
 
@@ -477,6 +488,7 @@
   justify-content: space-between;
   margin-bottom: 12px;
   font-size: 16px;
+  color: #222222;
 }
 
 .total-price {
@@ -486,7 +498,8 @@
   font-weight: 600;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #dddddd;
+  color: #222222;
 }
 
 .report-listing {
@@ -494,21 +507,30 @@
   text-align: center;
 }
 
+/* Improved contrast for the report button */
 .report-btn {
-  background: transparent;
+  background-color: transparent;
   border: none;
   font-size: 14px;
-  color: #222;
-  text-decoration: underline;
+  color: #e41d57;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
   margin: 0 auto;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.report-btn:hover {
+  background-color: #fff0f3;
 }
 
 /* Modal Styles */
-.modal-overlay {
+.modal-overlay,
+.popup-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -521,30 +543,36 @@
   z-index: 1000;
 }
 
-.report-modal {
+.report-modal,
+.popup-content {
   background-color: white;
   border-radius: 12px;
   width: 500px;
   max-width: 90%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  position: relative;
 }
 
-.modal-header {
+.modal-header,
+.popup-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #eeeeee;
 }
 
-.modal-header h3 {
+.modal-header h3,
+.popup-header h3 {
   font-size: 18px;
   font-weight: 600;
   margin: 0;
+  color: #222222;
 }
 
-.close-modal {
+.close-modal,
+.close-popup {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -553,46 +581,70 @@
   align-items: center;
   justify-content: center;
   padding: 4px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
 }
 
-.modal-body {
+.close-modal:hover,
+.close-popup:hover {
+  background-color: #f7f7f7;
+}
+
+.modal-body,
+.popup-body {
   padding: 24px;
 }
 
-.modal-body p {
+.modal-body p,
+.popup-body p {
   margin-top: 0;
   margin-bottom: 16px;
   font-size: 16px;
+  color: #222222;
 }
 
-.modal-body textarea {
+.modal-body textarea,
+.popup-body textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #dddddd;
   border-radius: 8px;
   font-family: inherit;
   font-size: 16px;
   resize: vertical;
+  color: #222222;
 }
 
-.modal-footer {
+.modal-footer,
+.popup-footer {
   display: flex;
   justify-content: flex-end;
   gap: 12px;
   padding: 16px 24px;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #eeeeee;
 }
 
 .cancel-btn {
-  background-color: transparent;
-  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
   border-radius: 8px;
   padding: 10px 16px;
   font-size: 16px;
   cursor: pointer;
+  transition: all 0.2s;
+  color: #222222;
 }
 
-.submit-report-btn {
+.cancel-btn:hover {
+  background-color: #f7f7f7;
+  border-color: #222222;
+}
+
+.submit-report-btn,
+.confirm-btn {
   background-color: #e41d57;
   color: white;
   border: none;
@@ -601,6 +653,80 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-report-btn:hover,
+.confirm-btn:hover {
+  background-color: #c41a4b;
+}
+
+/* Reservation Popup Styles */
+.popup-listing-summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.popup-listing-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.popup-listing-details h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: #222222;
+}
+
+.popup-listing-details p {
+  font-size: 14px;
+  color: #717171;
+  margin: 0;
+}
+
+.popup-reservation-details {
+  margin-bottom: 24px;
+}
+
+.popup-detail-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #222222;
+}
+
+.popup-detail-item.total {
+  font-weight: 600;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eeeeee;
+}
+
+.popup-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.confirmation-message {
+  text-align: center;
+  padding: 24px;
+}
+
+.confirmation-message h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #222222;
+}
+
+.contact-email {
+  font-weight: 600;
+  color: #e41d57;
 }
 
 /* Loading and Error States */
@@ -646,6 +772,6 @@
 
   .date-input:first-child {
     border-right: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #dddddd;
   }
 }
