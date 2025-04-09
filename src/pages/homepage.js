@@ -3,9 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/homepage.css"; // Adjusted path to reflect correct location of homepage.css
  // ✅ Case-sensitive, matches your file name
+ import supabase from "../config/supabaseClient"; 
 
 function HomePage() {
   const navigate = useNavigate();
+  console.log("Supabase client initialized:", supabase);
 
   return (
     <div className="home-container">
