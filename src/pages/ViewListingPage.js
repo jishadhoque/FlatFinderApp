@@ -455,7 +455,7 @@ export default function ViewListingPage() {
               <div className="listing-section">
                 <h2>Amenities</h2>
                 <button className="show-all-btn" onClick={() => setShowAmenitiesModal(true)}>
-                  Show all 35 amenities
+                  Show all amenities
                 </button>
               </div>
 
